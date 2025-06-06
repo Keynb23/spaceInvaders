@@ -1,0 +1,222 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body, html, #canvasBG {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#canvasBG {
+  background-color: black;
+  position: absolute;
+  z-index: -2;
+}
+
+#stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  z-index: -1;
+}
+
+/* LASER */
+.lazer {
+  position: absolute;
+  z-index: -1;
+  left: 68px;
+  width: 3px;
+  height: 25px;
+  background-color: rgb(240, 255, 216);
+  border: 1px dashed rgb(138, 214, 15);
+  transition: with 0.2s ease-in-out;
+}
+
+.alienLazers {
+    position: absolute;
+    z-index: -1;
+    left: '';
+    width: 3px;
+    height: 25px;
+    background-color: rgb(235, 206, 129);
+    border: 1px dashed rgb(214, 55, 15);
+    transition: with 0.2s ease-in-out;
+}
+
+
+
+/* ASTEROID */
+.asteroid {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+    width: 100%;
+    height: 100%;
+    max-width: 120px;
+    max-height: 120px;
+    background-image: url('./assets/asteroid.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* EXPLOSION */
+.explosion {
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  width: 100%;
+  height: 100%;
+  max-width: 120px;
+  max-height: 120px;
+  background-image: url('./assets/explosion.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+transition: all 0.2s ease-in-out;
+}
+
+/* SPACESHIP */
+.spaceship {
+  position: absolute;
+  left: 5px;
+  bottom: 20px;
+  width: 100%;
+  height: 100%;
+  max-width: 120px;
+  max-height: 120px;
+  background-image: url('./assets/spaceship.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* HEARTS */
+.playerHearts {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+
+.heart {
+  width: 30px;
+  display: block;
+  height: 30px;
+  background-image: url('./assets/hearts.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ALIENS */
+.aliens {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 100%;
+    height: 100%;
+    max-width: 80px;
+    max-height: 80px;
+    background-image: url('/assets/alienShip.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    rotate: 180deg;
+    }
+
+/* BOSS */
+
+#boss {
+  display: none;
+}
+
+.boss {
+  position: absolute;
+  top: 0;
+  left: 40%;
+  bottom: 200px;
+  right: 200px;
+  height: 350px;
+  width: 350px;
+  background-color: rgb(15, 87, 1);
+  border: 1px solid rgb(224, 150, 80);
+  border-radius: 50%;
+}
+
+/* EYES */
+.eyes {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 120px;
+}
+
+.eye {
+  height: 30px;
+  width: 30px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background-color: white;
+  position: relative;
+}
+
+.pupil {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+/* MOUTH */
+.mouth {
+  position: absolute;
+  top: 220px;
+  left: 120px;
+  height: 40px;
+  width: 120px;
+  border: 1px solid black;
+  border-radius: 50px;
+  background-color: rgb(34, 0, 0);
+}
+
+/* HEALTHBAR */
+.bossHealthbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 10px;
+  width: 100%;
+  background-color: red;
+  border: 2px solid gray;
+  border-radius: 8px;
+transition: all 0.2s ease-in-out;
+}
+
+
+/* SHIELD */
+.shield {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 10px;
+  width: 1200px;
+  background-color: orangered;
+  border: 2px solid salmon;
+  box-shadow:rgba(255, 232, 202, .5) 5px 5px;
+transition: all 0.2s ease-in-out;
+}
