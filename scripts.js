@@ -2,6 +2,7 @@
 let activeAsteroids = [];
 const maxAsteroids = 7;
 
+
 const spaceship = document.getElementById("spaceship");
 const lazer = document.getElementById("lazer");
 const explosion = document.getElementById("explosion");
@@ -14,9 +15,10 @@ const scoreDisplay = document.getElementById("score");
 const gameWidth = 1600;
 const gameHeight = 1200;
 const lazerSpeed = 10;
+const maxBossHealth = 1000; 
+let bossHealth = maxBossHealth;
 let spaceshipSpeed = 15;
 let lazerActive = false;
-let bossHealth = 100;
 let playerScore = 0;
 let playerHits = 0;
 let playerHearts = 3;
@@ -155,7 +157,11 @@ function checkLevelProgression() {
 function reduceBossHealth(amount) {
     bossHealth -= amount;
     if (bossHealth < 0) bossHealth = 0;
-    bossHealthbar.style.width = bossHealth + "%";
+
+    const bossHealthbar = document.querySelector(".bossHealthbar");
+    const healthPercent = (bossHealth / maxBossHealth) * 100;
+    bossHealthbar.style.width = healthPercent + "%";
+
     if (bossHealth === 0) {
         showExplosion(boss.offsetLeft, boss.offsetTop);
         boss.style.display = "none";
