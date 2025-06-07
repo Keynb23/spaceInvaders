@@ -29,68 +29,59 @@ body, html, #canvasBG {
 /* LASER */
 .lazer {
   position: absolute;
-  z-index: -1;
-  left: 68px;
+  /* FIX: Set z-index to 1 so lasers appear above the background but below the ship */
+  z-index: 1;
   width: 3px;
   height: 25px;
   background-color: rgb(240, 255, 216);
   border: 1px dashed rgb(138, 214, 15);
-  transition: with 0.2s ease-in-out;
 }
 
 .alienLazers {
     position: absolute;
-    z-index: -1;
-    left: '';
+    /* FIX: Set z-index to 1 so lasers appear above the background */
+    z-index: 1;
     width: 3px;
     height: 25px;
     background-color: rgb(235, 206, 129);
     border: 1px dashed rgb(214, 55, 15);
-    transition: with 0.2s ease-in-out;
 }
-
-
 
 /* ASTEROID */
 .asteroid {
   position: absolute;
-  top: 100px;
-  left: 100px;
-    width: 100%;
-    height: 100%;
-    max-width: 120px;
-    max-height: 120px;
-    background-image: url('./assets/asteroid.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+  /* FIX: Set z-index so asteroids appear above background and lasers */
+  z-index: 2;
+  width: 120px; /* Simplified width/height */
+  height: 120px;
+  background-image: url('./assets/asteroid.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* EXPLOSION */
 .explosion {
   position: absolute;
-  top: 150px;
-  left: 150px;
-  width: 100%;
-  height: 100%;
-  max-width: 120px;
-  max-height: 120px;
+  z-index: 10; /* Explosions should be on top of everything */
+  width: 120px;
+  height: 120px;
   background-image: url('./assets/explosion.gif');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 /* SPACESHIP */
 .spaceship {
   position: absolute;
+  /* FIX: Set z-index to 3 to ensure it's above lasers and asteroids */
+  z-index: 3;
   left: 5px;
   bottom: 20px;
-  width: 100%;
-  height: 100%;
-  max-width: 120px;
-  max-height: 120px;
+  width: 120px;
+  height: 120px;
   background-image: url('./assets/spaceship.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -104,8 +95,8 @@ transition: all 0.2s ease-in-out;
   top: 10px;
   display: flex;
   gap: 10px;
+  z-index: 10; /* Ensure hearts are visible */
 }
-
 
 .heart {
   width: 30px;
@@ -120,35 +111,35 @@ transition: all 0.2s ease-in-out;
 /* ALIENS */
 .aliens {
     position: absolute;
-    top: 50px;
-    left: 50px;
-    width: 100%;
-    height: 100%;
-    max-width: 80px;
-    max-height: 80px;
+    /* FIX: Set z-index so aliens appear above the background */
+    z-index: 2;
+    width: 80px;
+    height: 80px;
     background-image: url('/assets/alienShip.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     rotate: 180deg;
-    }
-
-/* BOSS */
-
-#boss {
-  display: none;
 }
 
-.boss {
+/* BOSS */
+#boss {
+  display: none; /* Stays hidden until the game calls for it */
+  z-index: 2;
   position: absolute;
-  top: 0;
-  left: 40%;
-  bottom: 200px;
-  right: 200px;
+
+  /* --- FIX: All sizing and positioning now targets the ID for higher priority --- */
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* This forces the boss to be exactly 350px, overriding other styles */
   height: 350px;
   width: 350px;
-  background-color: rgb(15, 87, 1);
-  border: 1px solid rgb(224, 150, 80);
+
+  /* This is the more visible purple color I recommended */
+  background-color: rgb(74, 20, 140);
+  border: 3px solid rgb(171, 71, 188);
   border-radius: 50%;
 }
 
@@ -158,13 +149,15 @@ transition: all 0.2s ease-in-out;
   justify-content: space-between;
   position: absolute;
   top: 100px;
-  left: 100px;
-  width: 120px;
+  /* FIX: Centered the eyes within the boss */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
 }
 
 .eye {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   border: 2px solid black;
   border-radius: 50%;
   background-color: white;
@@ -173,10 +166,10 @@ transition: all 0.2s ease-in-out;
 
 .pupil {
   position: absolute;
-  top: 6px;
-  left: 6px;
-  height: 8px;
-  width: 8px;
+  top: 10px;
+  left: 10px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
   background-color: black;
 }
@@ -185,38 +178,26 @@ transition: all 0.2s ease-in-out;
 .mouth {
   position: absolute;
   top: 220px;
-  left: 120px;
-  height: 40px;
-  width: 120px;
-  border: 1px solid black;
+  /* FIX: Centered the mouth */
+  left: 50%;
+  transform: translateX(-50%);
+  height: 50px;
+  width: 150px;
+  border: 2px solid black;
   border-radius: 50px;
   background-color: rgb(34, 0, 0);
-}
-
-/* HEALTHBAR */
-.bossHealthbar {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 10px;
-  width: 100%;
-  background-color: red;
-  border: 2px solid gray;
-  border-radius: 8px;
-transition: all 0.2s ease-in-out;
 }
 
 
 /* SHIELD */
 .shield {
   position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 10px;
-  width: 1200px;
-  background-color: orangered;
-  border: 2px solid salmon;
-  box-shadow:rgba(255, 232, 202, .5) 5px 5px;
-transition: all 0.2s ease-in-out;
+  display: none; /* Hidden by default */
+  z-index: 5;
+  /* FIX: Shield is now a circle with a semi-transparent background */
+  background-color: rgba(255, 165, 0, 0.3);
+  border: 3px solid orangered;
+  box-shadow: 0 0 20px rgba(255, 100, 0, 0.7);
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
 }
